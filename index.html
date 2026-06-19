@@ -36,7 +36,7 @@
             overflow-x: hidden;
         }
 
-        /* --- ENCABEZADO ESTILO SETUP RECOMENDADO --- */
+        /* --- ENCABEZADO ESTILO SETUP --- */
         header {
             background-color: var(--blanco);
             border-bottom: 4px solid var(--azul-botiquin);
@@ -56,14 +56,12 @@
             gap: 1rem;
         }
 
-        /* Contenedor Izquierdo: Menú + Logo */
         .logo-area {
             display: flex;
             align-items: center;
             gap: 0.8rem;
         }
 
-        /* Botón de Menú Hamburguesa (☰) */
         .btn-menu-hamburguesa {
             background: none;
             border: none;
@@ -88,7 +86,7 @@
             text-shadow: 1px 1px 0px var(--naranja-botiquin);
         }
 
-        /* Barra de Búsqueda Centralizada */
+        /* Barra de Búsqueda */
         .search-container {
             flex: 1;
             max-width: 600px;
@@ -126,7 +124,7 @@
         .sidebar-menu {
             position: fixed;
             top: 0;
-            left: -300px; /* Escondido por defecto a la izquierda */
+            left: -300px;
             width: 280px;
             height: 100%;
             background-color: var(--blanco);
@@ -138,7 +136,7 @@
         }
 
         .sidebar-menu.abierto {
-            left: 0; /* Se muestra en pantalla */
+            left: 0;
         }
 
         .sidebar-header {
@@ -192,7 +190,6 @@
             color: var(--naranja-botiquin);
         }
 
-        /* Cortina oscura detrás del menú */
         .menu-overlay {
             display: none;
             position: fixed;
@@ -205,14 +202,14 @@
             display: block;
         }
 
-        /* --- CONTROL DE VISTAS (PÁGINAS) --- */
+        /* --- CONTROL DE VISTAS PRINCIPALES --- */
         .seccion-pagina {
-            display: none;
+            display: none; /* Todo oculto por defecto */
             animation: fadeIn 0.3s ease-in-out;
         }
 
         .seccion-pagina.activa {
-            display: block;
+            display: block; /* Solo se muestra la sección activa */
         }
 
         @keyframes fadeIn {
@@ -227,7 +224,7 @@
             flex: 1;
         }
 
-        /* --- ESTILOS: INICIO --- */
+        /* --- ESTILOS: SECCIÓN INICIO --- */
         .hero-banner {
             background: linear-gradient(135deg, rgba(255,106,0,1) 0%, rgba(255,130,0,1) 100%);
             color: var(--blanco);
@@ -341,6 +338,24 @@
             justify-content: space-between;
         }
 
+        /* Clase auxiliar para ocultar un producto específico al filtrar */
+        .producto-card.oculto-por-filtro {
+            display: none !important;
+        }
+
+        .no-resultados {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #64748b;
+            grid-column: 1 / -1;
+            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            border: 2px dashed #cbd5e1;
+            display: none;
+        }
+
         .producto-card:hover {
             transform: scale(1.03) rotate(-1deg);
             box-shadow: 8px 8px 0px var(--naranja-botiquin);
@@ -395,15 +410,8 @@
             flex-grow: 1;
         }
 
-        .precio-antes {
-            font-size: 1rem;
-            color: #94a3b8;
-            text-decoration: line-through;
-            font-weight: 700;
-        }
-
         .precio-ahora {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--naranja-botiquin);
             font-weight: 900;
             font-style: italic;
@@ -428,7 +436,7 @@
 
         .btn-comprar:hover { transform: translateY(2px); box-shadow: 0 2px 0px #128C7E; }
 
-        /* --- ESTILOS: OFERTAS (STICKER) --- */
+        /* --- ESTILOS: OFERTAS --- */
         .seccion-oferta {
             background-color: var(--blanco);
             border: 4px solid var(--azul-botiquin);
@@ -526,13 +534,11 @@
 </head>
 <body>
 
-    <!-- Cortina oscura de fondo para cuando abre el menú -->
     <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Menú Lateral Oculto (Sidebar) -->
     <div class="sidebar-menu" id="sidebar">
         <div class="sidebar-header">
-            <h3>Menu Opciones</h3>
+            <h3>Menú Opciones</h3>
             <button class="btn-cerrar-menu" onclick="toggleMenu()">✕</button>
         </div>
         <ul class="sidebar-links">
@@ -543,22 +549,20 @@
         </ul>
     </div>
 
-    <!-- Encabezado con buscador central y botón de menú hambuguesa -->
     <header>
         <div class="header-top">
             <div class="logo-area">
                 <button class="btn-menu-hamburguesa" onclick="toggleMenu()">☰</button>
-                <div class="logo">➕ El Botiquín</div>
+                <div class="logo" onclick="navegar('inicio')" style="cursor: pointer;">➕ El Botiquín</div>
             </div>
             
             <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Busca tu Medicamento...">
-                <button class="search-icon">🔍</button>
+                <input type="text" id="input-buscador" class="search-bar" placeholder="Busca tu Medicamento y presiona Enter..." onkeypress="evaluarTeclado(event)">
+                <button class="search-icon" onclick="ejecutarBusqueda()">🔍</button>
             </div>
         </div>
     </header>
 
-    <!-- PÁGINA 1: INICIO -->
     <section id="pag-inicio" class="seccion-pagina hero-banner activa">
         <div class="hero-content">
             <h1 class="titulo-impacto">¡Unite a la Familia <span>Botiquín</span> y empezá a ganar!</h1>
@@ -567,11 +571,13 @@
         </div>
     </section>
 
-    <!-- PÁGINA 2: PRODUCTOS -->
     <main id="pag-productos" class="seccion-pagina container">
         <h2 class="titulo-seccion">📦 Nuestro Catálogo</h2>
-        <div class="grid-productos">
-            <div class="producto-card">
+        <div class="grid-productos" id="contenedor-catalogo">
+            
+            <div id="sin-coincidencias" class="no-resultados">❌ No encontramos productos que coincidan con tu búsqueda. ¡Intenta de nuevo!</div>
+
+            <div class="producto-card" data-nombre="berifen 100 mg analguesico antiinflamatorio dolor">
                 <div class="badge-producto gratis">10 + 10 GRATIS</div>
                 <div class="img-placeholder">📸 Foto Berifén</div>
                 <h3>Berifén 100 mg</h3>
@@ -580,7 +586,7 @@
                 <a href="https://wa.me/50622135670?text=Hola!%20Me%20interesa%20la%20promoción%20de%20Berifén%20100mg%20(10%2B10%20Gratis)." class="btn-comprar" target="_blank">🛒 Consultar por WhatsApp</a>
             </div>
             
-            <div class="producto-card">
+            <div class="producto-card" data-nombre="melatonina plus 8 sueno dormir descanso profundo">
                 <div class="badge-producto">CONCILIÁ EL SUEÑO</div>
                 <div class="img-placeholder">📸 Foto Melatonina</div>
                 <h3>Melatonina Plus 8</h3>
@@ -589,7 +595,7 @@
                 <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20consultar%20por%20la%20Melatonina%20Plus%208%20para%20el%20sueño." class="btn-comprar" target="_blank">🛒 Consultar por WhatsApp</a>
             </div>
 
-            <div class="producto-card">
+            <div class="producto-card" data-nombre="creatina rnc masa muscular energia fuerza rendimiento">
                 <div class="badge-producto">MÁXIMA ENERGÍA</div>
                 <div class="img-placeholder">📸 Foto Creatina</div>
                 <h3>Creatina RNC</h3>
@@ -600,12 +606,11 @@
         </div>
     </main>
 
-    <!-- PÁGINA 3: OFERTAS -->
     <main id="pag-promos" class="seccion-pagina container">
         <div class="seccion-oferta">
             <div class="badge-descuento">¡HASTA 20% OFF!</div>
             <h2 class="subtitulo-oferta">Todos los Martes y Miércoles</h2>
-            <p style="font-size: 1.3rem; font-weight: 700; color: #555;">Aprovechá este gran descuento en todos nuestros productos naturales.</p>
+            <p style="font-size: 1.3rem; font-weight: 700; color: #555;">Aprovechá este gran descuento en todos nuestros productos naturales. ¡Cuidamos tu salud y tu bolsillo!</p>
         </div>
 
         <div class="grid-productos">
@@ -629,12 +634,11 @@
         </div>
     </main>
 
-    <!-- PÁGINA 4: CONTACTO -->
     <main id="pag-contacto" class="seccion-pagina container">
         <div class="sucursal-layout">
             <div class="bloque-info">
                 <h3>Horario de Atención</h3>
-                <p>📅 <strong>Lunes a Sábado:</strong> Abierto corrido de <strong>9:00 a. m. a 8:00 p. m.</strong></p>
+                <p>📅 <strong>Lunes a Sábado:</strong> Abierto corrido hasta las <strong>8:00 p. m.</strong></p>
                 <p>😴 <strong>Domingos:</strong> Cerrado</p>
                 <br>
                 <h3>Medios de Contacto</h3>
@@ -657,9 +661,8 @@
         <p>&copy; 2026 Farmacia El Botiquín — Pavas, San José. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LÓGICA DE INTERACCIÓN EN JAVASCRIPT -->
     <script>
-        // Función para abrir y cerrar el menú lateral oculto
+        // Controlar apertura y cierre del menú lateral
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -668,25 +671,67 @@
             overlay.classList.toggle('visible');
         }
 
-        // Función para cambiar entre secciones
+        // Navegación limpia entre vistas
         function navegar(destinatario) {
-            // 1. Ocultar todas las vistas
+            // Ocultar todas las secciones absolutamente
             const paginas = document.querySelectorAll('.seccion-pagina');
             paginas.forEach(p => p.classList.remove('activa'));
 
-            // 2. Limpiar estados activos de botones del menú
+            // Quitar clase activa a los botones del sidebar
             const botones = document.querySelectorAll('.sidebar-links button');
             botones.forEach(b => b.classList.remove('active'));
 
-            // 3. Activar la vista y el botón correspondiente
+            // Mostrar solo la seleccionada
             document.getElementById('pag-' + destinatario).classList.add('activa');
-            document.getElementById('btn-' + destinatario).classList.add('active');
+            
+            // Marcar botón activo del menú (si existe)
+            const botonActivo = document.getElementById('btn-' + destinatario);
+            if (botonActivo) botonActivo.classList.add('active');
 
-            // 4. Cerrar el menú lateral automáticamente para comodidad del usuario
-            toggleMenu();
+            // Asegurar el cierre del menú si estaba abierto
+            document.getElementById('sidebar').classList.remove('abierto');
+            document.getElementById('overlay').classList.remove('visible');
 
-            // 5. Scroll fluido al inicio superior
+            // Subir la página suavemente
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Evaluar si presionó la tecla Enter en el buscador
+        function evaluarTeclado(evento) {
+            if (evento.key === "Enter") {
+                ejecutarBusqueda();
+            }
+        }
+
+        // Algoritmo de filtrado de productos
+        function ejecutarBusqueda() {
+            const textoBuscado = document.getElementById('input-buscador').value.toLowerCase().trim();
+            
+            // Redirigir de inmediato a la sección de productos limpiando el banner de inicio
+            navegar('productos');
+
+            const tarjetasProductos = document.querySelectorAll('#contenedor-catalogo .producto-card');
+            let coincidenciasEncontradas = 0;
+
+            tarjetasProductos.forEach(tarjeta => {
+                const palabrasClave = tarjeta.getAttribute('data-nombre');
+                
+                // Si la tarjeta incluye lo buscado, se muestra; si no, se oculta con CSS
+                if (palabrasClave.includes(textoBuscado)) {
+                    tarjeta.classList.remove('oculto-por-filtro');
+                    coincidenciasEncontradas++;
+                } else {
+                    tarjeta.classList.add('oculto-por-filtro');
+                }
+            });
+
+            // Mostrar mensaje de error si no hay coincidencias
+            const mensajeError = document.getElementById('sin-coincidencias');
+            if (coincidenciasEncontradas === 0) {
+                mensajeError.style.display = "block";
+            } else {
+                mensajeError.style.display = "none";
+            }
         }
     </script>
 
