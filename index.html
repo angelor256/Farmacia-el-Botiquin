@@ -77,12 +77,12 @@
 
         /* --- CONTROL DE VISTAS (PÁGINAS) --- */
         .seccion-pagina {
-            display: none; /* Por defecto ocultas */
+            display: none;
             animation: fadeIn 0.3s ease-in-out;
         }
 
         .seccion-pagina.activa {
-            display: block; /* Solo se muestra la que tiene esta clase */
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -206,6 +206,9 @@
             position: relative;
             box-shadow: 5px 5px 0px rgba(11, 76, 163, 0.15);
             transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .producto-card:hover {
@@ -229,6 +232,10 @@
             z-index: 10;
         }
 
+        .badge-producto.gratis {
+            background-color: #e11d48;
+        }
+
         .img-placeholder {
             background-color: #f7fafc;
             border: 2px dashed #cbd5e1;
@@ -244,11 +251,12 @@
         }
 
         .producto-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 900;
             color: var(--azul-botiquin);
             text-transform: uppercase;
             margin-bottom: 0.5rem;
+            min-height: 40px;
         }
 
         .producto-card .descripcion {
@@ -256,6 +264,7 @@
             color: #64748b;
             font-weight: 700;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         .precio-antes {
@@ -266,7 +275,7 @@
         }
 
         .precio-ahora {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--naranja-botiquin);
             font-weight: 900;
             font-style: italic;
@@ -389,7 +398,6 @@
 </head>
 <body>
 
-    <!-- Encabezado y Barra de Navegación -->
     <header>
         <div class="logo">➕ Farmacia El Botiquín</div>
         <nav>
@@ -400,7 +408,6 @@
         </nav>
     </header>
 
-    <!-- PÁGINA 1: INICIO -->
     <section id="pag-inicio" class="seccion-pagina hero-banner activa">
         <div class="hero-content">
             <h1 class="titulo-impacto">¡Unite a la Familia <span>Botiquín</span> y empezá a ganar!</h1>
@@ -409,35 +416,38 @@
         </div>
     </section>
 
-    <!-- PÁGINA 2: PRODUCTOS -->
     <main id="pag-productos" class="seccion-pagina container">
         <h2 class="titulo-seccion">📦 Nuestro Catálogo</h2>
         <div class="grid-productos">
             <div class="producto-card">
-                <div class="img-placeholder">📸 Foto Producto</div>
-                <h3>Acetaminofén 500mg</h3>
-                <p class="descripcion">Para alivio efectivo del dolor y la fiebre.</p>
-                <span class="precio-ahora">¢1,200</span>
-                <a href="https://wa.me/50622135670?text=Hola!%20Consultar%20por%20Acetaminofen." class="btn-comprar" target="_blank">🛒 Consultar</a>
+                <div class="badge-producto gratis">10 + 10 GRATIS</div>
+                <div class="img-placeholder">📸 Foto Berifén</div>
+                <h3>Berifén 100 mg</h3>
+                <p class="descripcion">Excelente analgésico y antiinflamatorio para aliviar el dolor fuerte y recuperar tu día de forma rápida.</p>
+                <span class="precio-ahora">Consultar Precio</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Me%20interesa%20la%20promoción%20de%20Berifén%20100mg%20(10%2B10%20Gratis)." class="btn-comprar" target="_blank">🛒 Consultar por WhatsApp</a>
             </div>
+            
             <div class="producto-card">
-                <div class="img-placeholder">📸 Foto Producto</div>
-                <h3>Jarabe Tos Adulto</h3>
-                <p class="descripcion">Alivio rápido de la tos y la congestión bronquial.</p>
-                <span class="precio-ahora">¢4,500</span>
-                <a href="https://wa.me/50622135670?text=Hola!%20Consultar%20por%20Jarabe%20Tos." class="btn-comprar" target="_blank">🛒 Consultar</a>
+                <div class="badge-producto">CONCILIÁ EL SUEÑO</div>
+                <div class="img-placeholder">📸 Foto Melatonina</div>
+                <h3>Melatonina Plus 8</h3>
+                <p class="descripcion">¿Te cuesta dormir? La melatonina te ayuda a mejorar la calidad de tu descanso para un sueño profundo y reparador.</p>
+                <span class="precio-ahora">Consultar Precio</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20consultar%20por%20la%20Melatonina%20Plus%208%20para%20el%20sueño." class="btn-comprar" target="_blank">🛒 Consultar por WhatsApp</a>
             </div>
+
             <div class="producto-card">
-                <div class="img-placeholder">📸 Foto Producto</div>
-                <h3>Suero Oral Coco</h3>
-                <p class="descripcion">Hidratación óptima, balanceada y rápida.</p>
-                <span class="precio-ahora">¢1,500</span>
-                <a href="https://wa.me/50622135670?text=Hola!%20Consultar%20por%20Suero%20Oral." class="btn-comprar" target="_blank">🛒 Consultar</a>
+                <div class="badge-producto">MÁXIMA ENERGÍA</div>
+                <div class="img-placeholder">📸 Foto Creatina</div>
+                <h3>Creatina RNC</h3>
+                <p class="descripcion">Ideal para potenciar el incremento de masa muscular, optimizar el rendimiento físico y obtener mayor fuerza diaria.</p>
+                <span class="precio-ahora">Consultar Precio</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Me%20interesa%20saber%20el%20precio%20de%20la%20Creatina%20RNC." class="btn-comprar" target="_blank">🛒 Consultar por WhatsApp</a>
             </div>
         </div>
     </main>
 
-    <!-- PÁGINA 3: OFERTAS -->
     <main id="pag-promos" class="seccion-pagina container">
         <div class="seccion-oferta">
             <div class="badge-descuento">¡HASTA 20% OFF!</div>
@@ -447,32 +457,30 @@
 
         <div class="grid-productos">
             <div class="producto-card">
-                <div class="badge-producto">20% OFF</div>
-                <div class="img-placeholder">📸 Foto Suplemento</div>
-                <h3>Vitamina C Adultos</h3>
-                <p class="descripcion">Frasco de 100 gomitas para reforzar defensas.</p>
-                <span class="precio-antes">¢6,500</span>
-                <span class="precio-ahora">¢5,200</span>
-                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20la%20oferta%20de%20Vitamina%20C." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
+                <div class="badge-producto">20% OFF MARTES</div>
+                <div class="img-placeholder">📸 Foto Vitamina C</div>
+                <h3>Vitamina C + Nutricaps</h3>
+                <p class="descripcion">Tu rutina saludable empieza día a día. Refuerza al máximo tu sistema inmune, tu energía y bienestar diario.</p>
+                <span class="precio-ahora">¡20% de Descuento!</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20aprovechar%20el%2020%25%20de%20descuento%20en%20Vitamina%20C%20y%20Nutricaps." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
             </div>
+
             <div class="producto-card">
-                <div class="badge-producto">20% OFF</div>
-                <div class="img-placeholder">📸 Foto Té</div>
-                <h3>Té Verde Orgánico</h3>
-                <p class="descripcion">Caja de 25 bolsitas. Antioxidante 100% natural.</p>
-                <span class="precio-antes">¢2,900</span>
-                <span class="precio-ahora">¢1,950</span>
-                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20la%20oferta%20de%20Te%20Verde." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
+                <div class="badge-producto">VIERNES DE MACROBIÓTICA</div>
+                <div class="img-placeholder">📸 Foto Macrobiótica</div>
+                <h3>Combo Macrobiótica</h3>
+                <p class="descripcion">Aprovechá hasta un 20% de descuento los viernes en productos seleccionados como Omega 3, Linaza, Silimarina y más.</p>
+                <span class="precio-ahora">¡Hasta 20% OFF!</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Me%20interesan%20los%20productos%20de%20macrobiótica%20con%20descuento." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
             </div>
         </div>
     </main>
 
-    <!-- PÁGINA 4: CONTACTO -->
     <main id="pag-contacto" class="seccion-pagina container">
         <div class="sucursal-layout">
             <div class="bloque-info">
                 <h3>Horario de Atención</h3>
-                <p>📅 <strong>Lunes a Sábado:</strong> Abierto hasta las <strong>8:00 p. m.</strong></p>
+                <p>📅 <strong>Lunes a Sábado:</strong> Abierto corrido de <strong>9:00 a. m. a 8:00 p. m.</strong></p>
                 <p>😴 <strong>Domingos:</strong> Cerrado</p>
                 <br>
                 <h3>Medios de Contacto</h3>
@@ -482,7 +490,7 @@
 
             <div class="bloque-info" style="background-color: var(--blanco); color: #333; border-left-color: var(--azul-botiquin);">
                 <h3 style="color: var(--azul-botiquin);">Nuestra Ubicación</h3>
-                <p style="font-weight: 700;">📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero.</p>
+                <p style="font-weight: 700;">📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero. Costa Rica.</p>
                 <p style="color: #666; font-size: 1rem;">🚌 <em>Ref: Parada El Higuerón, Pueblo Nuevo.</em></p>
                 
                 <a href="https://wa.me/50622135670" class="btn-social social-wa" target="_blank">💬 Mensaje de WhatsApp</a>
@@ -495,24 +503,23 @@
         <p>&copy; 2026 Farmacia El Botiquín — Pavas, San José. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LÓGICA DE NAVEGACIÓN EN JAVASCRIPT -->
     <script>
         function navegar(destinatario) {
-            // 1. Ocultar todas las páginas removiendo la clase 'activa'
+            // Ocultar todas las páginas
             const paginas = document.querySelectorAll('.seccion-pagina');
             paginas.forEach(p => p.classList.remove('activa'));
 
-            // 2. Quitar el estado activo de los botones del menú
+            // Quitar el estado activo de los botones del menú
             const botones = document.querySelectorAll('nav button');
             botones.forEach(b => b.classList.remove('active'));
 
-            // 3. Mostrar la página seleccionada
+            // Mostrar la página seleccionada
             document.getElementById('pag-' + destinatario).classList.add('activa');
 
-            // 4. Marcar el botón del menú actual como activo
+            // Marcar el botón del menú actual como activo
             document.getElementById('btn-' + destinatario).classList.add('active');
 
-            // 5. Hacer scroll automático hacia arriba al cambiar de vista
+            // Hacer scroll automático hacia arriba de forma fluida
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
