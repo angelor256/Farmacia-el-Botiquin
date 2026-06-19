@@ -29,8 +29,12 @@
             background-color: var(--gris-fondo);
             color: #333;
             line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* --- NAVEGACIÓN --- */
         header {
             background-color: var(--azul-botiquin);
             border-bottom: 5px solid var(--naranja-botiquin);
@@ -53,29 +57,59 @@
             text-shadow: 2px 2px 0px var(--naranja-botiquin);
         }
 
-        nav a {
+        nav button {
+            background: none;
+            border: none;
             color: var(--blanco);
-            text-decoration: none;
+            cursor: pointer;
             margin-left: 1.5rem;
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.9rem;
             transition: color 0.2s;
+            padding: 0.5rem 0;
         }
 
-        nav a:hover {
-            color: var(--naranja-botiquin);
+        nav button:hover, nav button.active {
+            color: var(--amarillo-promo);
+            outline: none;
         }
 
-        /* Banner Principal Estilo Facebook */
+        /* --- CONTROL DE VISTAS (PÁGINAS) --- */
+        .seccion-pagina {
+            display: none; /* Por defecto ocultas */
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .seccion-pagina.activa {
+            display: block; /* Solo se muestra la que tiene esta clase */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            flex: 1;
+        }
+
+        /* --- ESTILOS: INICIO --- */
         .hero-banner {
             background: linear-gradient(135deg, rgba(255,106,0,1) 0%, rgba(255,130,0,1) 100%);
             color: var(--blanco);
-            padding: 5rem 1.5rem;
+            padding: 8rem 1.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
             border-bottom: 8px solid var(--azul-botiquin);
+            min-height: calc(100vh - 150px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-banner::before {
@@ -95,16 +129,16 @@
         }
 
         .titulo-impacto {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 900;
             text-transform: uppercase;
             font-style: italic;
-            line-height: 1;
+            line-height: 1.1;
             letter-spacing: -1px;
             transform: skewX(-6deg);
             color: var(--blanco);
             text-shadow: 3px 3px 0px var(--azul-botiquin), 6px 6px 0px rgba(0,0,0,0.15);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .titulo-impacto span {
@@ -113,20 +147,37 @@
         }
 
         .hero-banner p {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
             max-width: 700px;
-            margin: 0 auto 2.5rem auto;
+            margin: 0 auto 3rem auto;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
+        .btn-accion-wow {
+            display: inline-block;
+            background-color: var(--azul-botiquin);
+            color: var(--blanco);
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 0px var(--azul-oscuro), 0 15px 20px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            transform: skewX(-6deg);
+            cursor: pointer;
+            border: none;
         }
 
-        /* Títulos de Sección Estilo Comercial */
+        .btn-accion-wow:hover {
+            transform: skewX(-6deg) translateY(2px);
+            box-shadow: 0 6px 0px var(--azul-oscuro), 0 10px 15px rgba(0,0,0,0.3);
+        }
+
+        /* --- ESTILOS COMUNES SECCIONES --- */
         .titulo-seccion {
             font-size: 2.8rem;
             font-weight: 900;
@@ -139,12 +190,11 @@
             transform: skewX(-4deg);
         }
 
-        /* Vitrina de Productos Dinámica */
+        /* --- VITRINA DE PRODUCTOS --- */
         .grid-productos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
-            margin-bottom: 5rem;
         }
 
         .producto-card {
@@ -155,7 +205,7 @@
             text-align: center;
             position: relative;
             box-shadow: 5px 5px 0px rgba(11, 76, 163, 0.15);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .producto-card:hover {
@@ -163,7 +213,6 @@
             box-shadow: 8px 8px 0px var(--naranja-botiquin);
         }
 
-        /* Etiquetas llamativas encima de las fotos */
         .badge-producto {
             position: absolute;
             top: 10px;
@@ -180,7 +229,6 @@
             z-index: 10;
         }
 
-        /* Contenedor de Imagen de Muestra */
         .img-placeholder {
             background-color: #f7fafc;
             border: 2px dashed #cbd5e1;
@@ -192,7 +240,6 @@
             color: #94a3b8;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            font-size: 0.9rem;
             text-transform: uppercase;
         }
 
@@ -202,21 +249,12 @@
             color: var(--azul-botiquin);
             text-transform: uppercase;
             margin-bottom: 0.5rem;
-            min-height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .producto-card .descripcion {
             font-size: 0.95rem;
             color: #64748b;
             font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Precios */
-        .precios-box {
             margin-bottom: 1.5rem;
         }
 
@@ -233,9 +271,10 @@
             font-weight: 900;
             font-style: italic;
             text-shadow: 1px 1px 0px var(--azul-botiquin);
+            margin-bottom: 1rem;
+            display: block;
         }
 
-        /* Botón de Compra Directo a WhatsApp */
         .btn-comprar {
             display: block;
             background-color: #25D366;
@@ -246,27 +285,50 @@
             font-weight: 900;
             text-transform: uppercase;
             font-style: italic;
-            font-size: 1.05rem;
             box-shadow: 0 4px 0px #128C7E;
             transition: all 0.1s;
         }
 
-        .btn-comprar:hover {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0px #128C7E;
+        .btn-comprar:hover { transform: translateY(2px); box-shadow: 0 2px 0px #128C7E; }
+
+        /* --- ESTILOS: OFERTAS (STICKER) --- */
+        .seccion-oferta {
+            background-color: var(--blanco);
+            border: 4px solid var(--azul-botiquin);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 4rem;
         }
 
-        .btn-comprar:active {
-            transform: translateY(4px);
-            box-shadow: 0 0px 0px #128C7E;
+        .badge-descuento {
+            background-color: var(--naranja-botiquin);
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 900;
+            font-style: italic;
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 12px;
+            transform: rotate(-3deg);
+            box-shadow: 4px 4px 0px var(--azul-botiquin);
+            margin-bottom: 1.5rem;
         }
 
-        /* Información y Sucursal */
+        .subtitulo-oferta {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--azul-botiquin);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* --- ESTILOS: CONTACTO --- */
         .sucursal-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2.5rem;
-            margin-top: 2rem;
         }
 
         .bloque-info {
@@ -275,6 +337,7 @@
             padding: 3rem;
             border-radius: 24px;
             border-left: 10px solid var(--naranja-botiquin);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
         }
 
         .bloque-info h3 {
@@ -282,24 +345,11 @@
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
         }
 
         .bloque-info p {
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .bloque-info strong {
-            color: var(--amarillo-promo);
-        }
-
-        .social-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
         }
 
         .btn-social {
@@ -311,20 +361,19 @@
             font-weight: 900;
             text-transform: uppercase;
             font-size: 1.1rem;
+            margin-top: 1.5rem;
         }
 
-        .social-fb {
-            background-color: #1877F2;
-            color: white;
-            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
-        }
+        .social-fb { background-color: #1877F2; color: white; }
+        .social-wa { background-color: #25D366; color: white; }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .titulo-impacto { font-size: 2.5rem; }
+            .titulo-impacto { font-size: 2.8rem; }
             .titulo-seccion { font-size: 2rem; }
             .sucursal-layout { grid-template-columns: 1fr; }
             header { flex-direction: column; gap: 1rem; }
-            nav a { margin: 0 0.5rem; }
+            nav button { margin: 0 0.5rem; }
         }
 
         footer {
@@ -332,89 +381,98 @@
             color: var(--blanco);
             text-align: center;
             padding: 2rem;
-            margin-top: 4rem;
             font-weight: 700;
             border-top: 5px solid var(--naranja-botiquin);
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
 
-    <!-- Encabezado -->
+    <!-- Encabezado y Barra de Navegación -->
     <header>
         <div class="logo">➕ Farmacia El Botiquín</div>
         <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#productos">Ofertas</a>
-            <a href="#contacto">Contacto</a>
+            <button onclick="navegar('inicio')" id="btn-inicio" class="active">Inicio</button>
+            <button onclick="navegar('productos')" id="btn-productos">Productos</button>
+            <button onclick="navegar('promos')" id="btn-promos">Ofertas</button>
+            <button onclick="navegar('contacto')" id="btn-contacto">Contacto</button>
         </nav>
     </header>
 
-    <!-- Banner Principal -->
-    <section id="inicio" class="hero-banner">
+    <!-- PÁGINA 1: INICIO -->
+    <section id="pag-inicio" class="seccion-pagina hero-banner activa">
         <div class="hero-content">
             <h1 class="titulo-impacto">¡Unite a la Familia <span>Botiquín</span> y empezá a ganar!</h1>
             <p>Nos enfocamos en proporcionar un servicio de calidad para lograr obtener el bienestar de todos nuestros clientes.</p>
+            <button onclick="navegar('productos')" class="btn-accion-wow">Ver Catálogo de Productos</button>
         </div>
     </section>
 
-    <!-- Sección de Productos Falsos para Muestra -->
-    <main class="container">
-        
-        <h2 id="productos" class="titulo-seccion">🔥 ¡Súper Ofertas de la Semana! 🔥</h2>
-        
+    <!-- PÁGINA 2: PRODUCTOS -->
+    <main id="pag-productos" class="seccion-pagina container">
+        <h2 class="titulo-seccion">📦 Nuestro Catálogo</h2>
         <div class="grid-productos">
-            <!-- Producto 1 -->
             <div class="producto-card">
-                <div class="badge-producto">¡20% OFF MARTES!</div>
-                <div class="img-placeholder">📸 Foto del Suplemento</div>
-                <h3>Vitamina C Adultos</h3>
-                <p class="descripcion">Frasco de 100 gomitas para reforzar las defensas.</p>
-                <div class="precios-box">
-                    <span class="precio-antes">¢6,500</span><br>
-                    <span class="precio-ahora">¢5,200</span>
-                </div>
-                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20pedir%20la%20Vitamina%20C%20en%20oferta." class="btn-comprar" target="_blank">
-                    🛒 Pedir por WhatsApp
-                </a>
+                <div class="img-placeholder">📸 Foto Producto</div>
+                <h3>Acetaminofén 500mg</h3>
+                <p class="descripcion">Para alivio efectivo del dolor y la fiebre.</p>
+                <span class="precio-ahora">¢1,200</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Consultar%20por%20Acetaminofen." class="btn-comprar" target="_blank">🛒 Consultar</a>
             </div>
-
-            <!-- Producto 2 -->
             <div class="producto-card">
-                <div class="badge-producto">LO MÁS VENDIDO</div>
-                <div class="img-placeholder">📸 Foto del Gel</div>
-                <h3>Alcohol en Gel 500ml</h3>
-                <p class="descripcion">Protección máxima para tus manos, no reseca la piel.</p>
-                <div class="precios-box">
-                    <span class="precio-antes">¢3,200</span><br>
-                    <span class="precio-ahora">¢2,500</span>
-                </div>
-                <a href="https://wa.me/50622135670?text=Hola!%20Me%20interesa%20el%20Alcohol%20en%20Gel%20de%20500ml." class="btn-comprar" target="_blank">
-                    🛒 Pedir por WhatsApp
-                </a>
+                <div class="img-placeholder">📸 Foto Producto</div>
+                <h3>Jarabe Tos Adulto</h3>
+                <p class="descripcion">Alivio rápido de la tos y la congestión bronquial.</p>
+                <span class="precio-ahora">¢4,500</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Consultar%20por%20Jarabe%20Tos." class="btn-comprar" target="_blank">🛒 Consultar</a>
             </div>
-
-            <!-- Producto 3 -->
             <div class="producto-card">
-                <div class="badge-producto">PRECIO BAJO</div>
-                <div class="img-placeholder">📸 Foto del Té natural</div>
-                <h3>Té Verde Orgánico</h3>
-                <p class="descripcion">Caja de 25 bolsitas. Antioxidante 100% natural.</p>
-                <div class="precios-box">
-                    <span class="precio-antes">¢2,900</span><br>
-                    <span class="precio-ahora">¢1,950</span>
-                </div>
-                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20encargar%20el%20Té%20Verde%20Orgánico." class="btn-comprar" target="_blank">
-                    🛒 Pedir por WhatsApp
-                </a>
+                <div class="img-placeholder">📸 Foto Producto</div>
+                <h3>Suero Oral Coco</h3>
+                <p class="descripcion">Hidratación óptima, balanceada y rápida.</p>
+                <span class="precio-ahora">¢1,500</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Consultar%20por%20Suero%20Oral." class="btn-comprar" target="_blank">🛒 Consultar</a>
             </div>
         </div>
+    </main>
 
-        <!-- Información de Localización -->
-        <div id="contacto" class="sucursal-layout">
+    <!-- PÁGINA 3: OFERTAS -->
+    <main id="pag-promos" class="seccion-pagina container">
+        <div class="seccion-oferta">
+            <div class="badge-descuento">¡HASTA 20% OFF!</div>
+            <h2 class="subtitulo-oferta">Todos los Martes y Miércoles</h2>
+            <p style="font-size: 1.3rem; font-weight: 700; color: #555;">Aprovechá este gran descuento en todos nuestros productos naturales.</p>
+        </div>
+
+        <div class="grid-productos">
+            <div class="producto-card">
+                <div class="badge-producto">20% OFF</div>
+                <div class="img-placeholder">📸 Foto Suplemento</div>
+                <h3>Vitamina C Adultos</h3>
+                <p class="descripcion">Frasco de 100 gomitas para reforzar defensas.</p>
+                <span class="precio-antes">¢6,500</span>
+                <span class="precio-ahora">¢5,200</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20la%20oferta%20de%20Vitamina%20C." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
+            </div>
+            <div class="producto-card">
+                <div class="badge-producto">20% OFF</div>
+                <div class="img-placeholder">📸 Foto Té</div>
+                <h3>Té Verde Orgánico</h3>
+                <p class="descripcion">Caja de 25 bolsitas. Antioxidante 100% natural.</p>
+                <span class="precio-antes">¢2,900</span>
+                <span class="precio-ahora">¢1,950</span>
+                <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20la%20oferta%20de%20Te%20Verde." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA 4: CONTACTO -->
+    <main id="pag-contacto" class="seccion-pagina container">
+        <div class="sucursal-layout">
             <div class="bloque-info">
                 <h3>Horario de Atención</h3>
-                <p>📅 <strong>Lunes a Sábado:</strong> Abierto de corrido hasta las <strong>8:00 p. m.</strong></p>
+                <p>📅 <strong>Lunes a Sábado:</strong> Abierto hasta las <strong>8:00 p. m.</strong></p>
                 <p>😴 <strong>Domingos:</strong> Cerrado</p>
                 <br>
                 <h3>Medios de Contacto</h3>
@@ -422,24 +480,42 @@
                 <p>✉️ <strong>Correo:</strong> info@farmaciaelbotiquin.com</p>
             </div>
 
-            <div class="bloque-info" style="background-color: var(--blanco); color: #333; border-left-color: var(--azul-botiquin); box-shadow: 0 6px 18px rgba(0,0,0,0.05);">
-                <h3 style="color: var(--azul-botiquin); text-shadow: none;">Nuestra Ubicación</h3>
-                <p style="font-weight: 700;">📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero. Costa Rica.</p>
-                <p style="color: #666; font-size: 1rem;">🚌 <em>Referencia: Parada El Higuerón, Pueblo Nuevo.</em></p>
+            <div class="bloque-info" style="background-color: var(--blanco); color: #333; border-left-color: var(--azul-botiquin);">
+                <h3 style="color: var(--azul-botiquin);">Nuestra Ubicación</h3>
+                <p style="font-weight: 700;">📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero.</p>
+                <p style="color: #666; font-size: 1rem;">🚌 <em>Ref: Parada El Higuerón, Pueblo Nuevo.</em></p>
                 
-                <div class="social-buttons">
-                    <a href="https://www.facebook.com/profile.php?id=100063717587126" class="btn-social social-fb" target="_blank">
-                        👍 Visítanos en Facebook
-                    </a>
-                </div>
+                <a href="https://wa.me/50622135670" class="btn-social social-wa" target="_blank">💬 Mensaje de WhatsApp</a>
+                <a href="https://www.facebook.com/profile.php?id=100063717587126" class="btn-social social-fb" target="_blank">👍 Nuestro Facebook</a>
             </div>
         </div>
-
     </main>
 
     <footer>
         <p>&copy; 2026 Farmacia El Botiquín — Pavas, San José. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- LÓGICA DE NAVEGACIÓN EN JAVASCRIPT -->
+    <script>
+        function navegar(destinatario) {
+            // 1. Ocultar todas las páginas removiendo la clase 'activa'
+            const paginas = document.querySelectorAll('.seccion-pagina');
+            paginas.forEach(p => p.classList.remove('activa'));
+
+            // 2. Quitar el estado activo de los botones del menú
+            const botones = document.querySelectorAll('nav button');
+            botones.forEach(b => b.classList.remove('active'));
+
+            // 3. Mostrar la página seleccionada
+            document.getElementById('pag-' + destinatario).classList.add('activa');
+
+            // 4. Marcar el botón del menú actual como activo
+            document.getElementById('btn-' + destinatario).classList.add('active');
+
+            // 5. Hacer scroll automático hacia arriba al cambiar de vista
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
