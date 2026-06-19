@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia El Botiquín - Calidad, Servicio y Precios Bajos</title>
+    <style>
+        /* Paleta de Colores Corporativa */
+        :root {
+            --azul-principal: #0b4ca3;   /* Azul del logo */
+            --azul-oscuro: #062f66;      /* Azul para textos/footer */
+            --naranja-acento: #ff6a00;   /* Naranja brillante de la marca */
+            --naranja-hover: #e05d00;
+            --gris-fondo: #f4f7fa;
+            --blanco: #ffffff;
+        }
+
+        /* Estilos Globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-fondo);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Barra de Navegación */
+        header {
+            background-color: var(--azul-principal);
+            color: var(--blanco);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        header .logo-icon {
+            background-color: var(--naranja-acento);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--naranja-acento);
+        }
+
+        /* Sección Hero con colores vibrantes */
+        .hero {
+            background: linear-gradient(135deg, rgba(11, 76, 163, 0.95), rgba(255, 106, 0, 0.85));
+            color: var(--blanco);
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        /* Cintillo de Promoción Especial */
+        .promo-banner {
+            background-color: var(--naranja-acento);
+            color: white;
+            text-align: center;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Contenedores */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3.5rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--azul-principal);
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--naranja-acento);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Cuadrícula de Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--blanco);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--azul-principal);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card.special {
+            border-top: 5px solid var(--naranja-acento);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--azul-oscuro);
+            font-size: 1.4rem;
+        }
+
+        /* Distribución de Información de Contacto */
+        .info-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .info-box {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-box h3 {
+            color: var(--azul-principal);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+        }
+
+        .info-box ul li {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* Botones de Acción */
+        .btn-container {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        .btn-facebook {
+            background-color: #1877F2;
+            color: white;
+        }
+
+        .btn-facebook:hover {
+            background-color: #0d65d9;
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            .info-layout {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            nav a {
+                margin: 0 0.75rem;
+            }
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <span class="logo-icon">♥</span> Farmacia El Botiquín
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <div class="promo-banner">
+        🎉 ¡Aprovechá hasta un 20% de descuento en productos naturales todos los MARTES y MIÉRCOLES! 🎉
+    </div>
+
+    <section id="inicio" class="hero">
+        <h1>Farmacia El Botiquín</h1>
+        <p>Nos enfocamos en proporcionar un servicio de calidad para lograr obtener el bienestar de todos nuestros clientes. ¡Unite a la Familia Botiquín y empezá a ganar!</p>
+    </section>
+
+    <section id="servicios" class="container">
+        <h2 class="section-title">Nuestros Pilares</h2>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Calidad Garantizada</h3>
+                <p>Ofrecemos medicamentos y productos de cuidado personal respaldados por los mejores laboratorios.</p>
+            </div>
+            <div class="card special">
+                <h3>Precios Bajos</h3>
+                <p>Cuidamos tu bolsillo con ofertas constantes y excelentes precios en todo nuestro catálogo.</p>
+            </div>
+            <div class="card">
+                <h3>Excelente Servicio</h3>
+                <p>Atención personalizada por profesionales dispuestos a asesorarte y cuidar de tu salud.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="background-color: #eef3f8;">
+        <div class="container info-layout">
+            <div class="info-box">
+                <h3>Horario de Atención</h3>
+                <ul>
+                    <li><strong>Lunes a Sábado:</strong> Abierto hasta las 8:00 p. m.</li>
+                    <li><strong>Domingos:</strong> Cerrado</li>
+                </ul>
+                <br>
+                <h3>Información de Contacto</h3>
+                <p>📞 <strong>Teléfono:</strong> 2213 5670</p>
+                <p>✉️ <strong>Correo:</strong> info@farmaciaelbotiquin.com</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Ubicación</h3>
+                <p>📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero. Costa Rica.</p>
+                <p style="color: #666; font-size: 0.95rem; margin-top: 5px;">🚌 Referencia: Parada El Higuerón, Pueblo Nuevo.</p>
+                
+                <div class="btn-container">
+                    <a href="https://wa.me/50622135670?text=Hola,%20vengo%20de%20la%20página%20web.%20Quisiera%20consultar%20por%20un%20medicamento." class="btn btn-whatsapp" target="_blank">
+                        💬 Cotizar por WhatsApp
+                    </a>
+                    
+                    <a href="https://www.facebook.com/profile.php?id=100063717587126" class="btn btn-facebook" target="_blank">
+                        👍 Visitar nuestro Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Farmacia El Botiquín. #Calidad #Servicio #PreciosBajos. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
