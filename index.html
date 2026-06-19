@@ -204,12 +204,17 @@
 
         /* --- CONTROL DE VISTAS PRINCIPALES --- */
         .seccion-pagina {
-            display: none; /* Todo oculto por defecto */
+            display: none !important; /* Forzar que todo lo que no sea activo desaparezca */
             animation: fadeIn 0.3s ease-in-out;
         }
 
         .seccion-pagina.activa {
-            display: block; /* Solo se muestra la sección activa */
+            display: block !important; /* Solo se despliega la sección activa */
+        }
+
+        /* Fix para que el banner naranja use flex solo cuando esté activo */
+        #pag-inicio.seccion-pagina.activa {
+            display: flex !important;
         }
 
         @keyframes fadeIn {
@@ -234,7 +239,6 @@
             overflow: hidden;
             border-bottom: 8px solid var(--azul-botiquin);
             min-height: calc(100vh - 150px);
-            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -338,7 +342,6 @@
             justify-content: space-between;
         }
 
-        /* Clase auxiliar para ocultar un producto específico al filtrar */
         .producto-card.oculto-por-filtro {
             display: none !important;
         }
@@ -536,6 +539,7 @@
 
     <div class="menu-overlay" id="overlay" onclick="toggleMenu()"></div>
 
+    <!-- Menú Lateral -->
     <div class="sidebar-menu" id="sidebar">
         <div class="sidebar-header">
             <h3>Menú Opciones</h3>
@@ -563,6 +567,7 @@
         </div>
     </header>
 
+    <!-- SECCIÓN 1: INICIO (¡Ya colapsa al 100% gracias al !important del CSS!) -->
     <section id="pag-inicio" class="seccion-pagina hero-banner activa">
         <div class="hero-content">
             <h1 class="titulo-impacto">¡Unite a la Familia <span>Botiquín</span> y empezá a ganar!</h1>
@@ -571,12 +576,14 @@
         </div>
     </section>
 
+    <!-- SECCIÓN 2: PRODUCTOS -->
     <main id="pag-productos" class="seccion-pagina container">
         <h2 class="titulo-seccion">📦 Nuestro Catálogo</h2>
         <div class="grid-productos" id="contenedor-catalogo">
             
             <div id="sin-coincidencias" class="no-resultados">❌ No encontramos productos que coincidan con tu búsqueda. ¡Intenta de nuevo!</div>
 
+            <!-- Productos -->
             <div class="producto-card" data-nombre="berifen 100 mg analguesico antiinflamatorio dolor">
                 <div class="badge-producto gratis">10 + 10 GRATIS</div>
                 <div class="img-placeholder">📸 Foto Berifén</div>
@@ -606,13 +613,13 @@
         </div>
     </main>
 
+    <!-- SECCIÓN 3: OFERTAS -->
     <main id="pag-promos" class="seccion-pagina container">
         <div class="seccion-oferta">
             <div class="badge-descuento">¡HASTA 20% OFF!</div>
             <h2 class="subtitulo-oferta">Todos los Martes y Miércoles</h2>
             <p style="font-size: 1.3rem; font-weight: 700; color: #555;">Aprovechá este gran descuento en todos nuestros productos naturales. ¡Cuidamos tu salud y tu bolsillo!</p>
         </div>
-
         <div class="grid-productos">
             <div class="producto-card">
                 <div class="badge-producto">20% OFF MARTES</div>
@@ -622,7 +629,6 @@
                 <span class="precio-ahora">¡20% de Descuento!</span>
                 <a href="https://wa.me/50622135670?text=Hola!%20Quiero%20aprovechar%20el%2020%25%20de%20descuento%20en%20Vitamina%20C%20y%20Nutricaps." class="btn-comprar" target="_blank">🛒 Pedir Oferta</a>
             </div>
-
             <div class="producto-card">
                 <div class="badge-producto">VIERNES DE MACROBIÓTICA</div>
                 <div class="img-placeholder">📸 Foto Macrobiótica</div>
@@ -634,6 +640,7 @@
         </div>
     </main>
 
+    <!-- SECCIÓN 4: CONTACTO -->
     <main id="pag-contacto" class="seccion-pagina container">
         <div class="sucursal-layout">
             <div class="bloque-info">
@@ -645,12 +652,10 @@
                 <p>📞 <strong>Teléfono Fijo:</strong> 2213 5670</p>
                 <p>✉️ <strong>Correo:</strong> info@farmaciaelbotiquin.com</p>
             </div>
-
             <div class="bloque-info" style="background-color: var(--blanco); color: #333; border-left-color: var(--azul-botiquin);">
                 <h3 style="color: var(--azul-botiquin);">Nuestra Ubicación</h3>
                 <p style="font-weight: 700;">📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero. Costa Rica.</p>
                 <p style="color: #666; font-size: 1rem;">🚌 <em>Ref: Parada El Higuerón, Pueblo Nuevo.</em></p>
-                
                 <a href="https://wa.me/50622135670" class="btn-social social-wa" target="_blank">💬 Mensaje de WhatsApp</a>
                 <a href="https://www.facebook.com/profile.php?id=100063717587126" class="btn-social social-fb" target="_blank">👍 Nuestro Facebook</a>
             </div>
@@ -662,61 +667,60 @@
     </footer>
 
     <script>
-        // Controlar apertura y cierre del menú lateral
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
-            
             sidebar.classList.toggle('abierto');
             overlay.classList.toggle('visible');
         }
 
-        // Navegación limpia entre vistas
+        // Sistema de navegación corregido
         function navegar(destinatario) {
-            // Ocultar todas las secciones absolutamente
+            // Selecciona todas las secciones y las oculta por completo
             const paginas = document.querySelectorAll('.seccion-pagina');
-            paginas.forEach(p => p.classList.remove('activa'));
+            paginas.forEach(p => {
+                p.classList.remove('activa');
+            });
 
-            // Quitar clase activa a los botones del sidebar
+            // Desmarcar todos los botones del menú
             const botones = document.querySelectorAll('.sidebar-links button');
             botones.forEach(b => b.classList.remove('active'));
 
-            // Mostrar solo la seleccionada
-            document.getElementById('pag-' + destinatario).classList.add('activa');
+            // Activar EXCLUSIVAMENTE la sección que el usuario seleccionó
+            const seccionDestino = document.getElementById('pag-' + destinatario);
+            if (seccionDestino) {
+                seccionDestino.classList.add('activa');
+            }
             
-            // Marcar botón activo del menú (si existe)
+            // Marcar el botón correspondiente en el menú lateral
             const botonActivo = document.getElementById('btn-' + destinatario);
             if (botonActivo) botonActivo.classList.add('active');
 
-            // Asegurar el cierre del menú si estaba abierto
+            // Cerrar el menú flotante
             document.getElementById('sidebar').classList.remove('abierto');
             document.getElementById('overlay').classList.remove('visible');
 
-            // Subir la página suavemente
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Forzar scroll al inicio de la pantalla para que la info quede arriba
+            window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        // Evaluar si presionó la tecla Enter en el buscador
         function evaluarTeclado(evento) {
             if (evento.key === "Enter") {
                 ejecutarBusqueda();
             }
         }
 
-        // Algoritmo de filtrado de productos
         function ejecutarBusqueda() {
             const textoBuscado = document.getElementById('input-buscador').value.toLowerCase().trim();
             
-            // Redirigir de inmediato a la sección de productos limpiando el banner de inicio
+            // Forzar cambio instantáneo a la pestaña de productos
             navegar('productos');
 
             const tarjetasProductos = document.querySelectorAll('#contenedor-catalogo .producto-card');
             let coincidenciasEncontradas = 0;
 
             tarjetasProductos.forEach(tarjeta => {
-                const palabrasClave = tarjeta.getAttribute('data-nombre');
-                
-                // Si la tarjeta incluye lo buscado, se muestra; si no, se oculta con CSS
+                const palabrasClave = tarjeta.getAttribute('data-nombre') || '';
                 if (palabrasClave.includes(textoBuscado)) {
                     tarjeta.classList.remove('oculto-por-filtro');
                     coincidenciasEncontradas++;
@@ -725,7 +729,6 @@
                 }
             });
 
-            // Mostrar mensaje de error si no hay coincidencias
             const mensajeError = document.getElementById('sin-coincidencias');
             if (coincidenciasEncontradas === 0) {
                 mensajeError.style.display = "block";
@@ -734,6 +737,5 @@
             }
         }
     </script>
-
 </body>
 </html>
