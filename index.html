@@ -3,350 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmacia El Botiquín - Calidad, Servicio y Precios Bajos</title>
+    <title>Farmacia El Botiquín — Bienestar Innovador</title>
+    <!-- Importamos una tipografía más moderna desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Paleta de Colores Corporativa */
         :root {
-            --azul-principal: #0b4ca3;   /* Azul del logo */
-            --azul-oscuro: #062f66;      /* Azul para textos/footer */
-            --naranja-acento: #ff6a00;   /* Naranja brillante de la marca */
-            --naranja-hover: #e05d00;
-            --gris-fondo: #f4f7fa;
-            --blanco: #ffffff;
+            --bg-principal: #040d1a;     /* Azul noche profundo de fondo */
+            --bg-tarjeta: rgba(255, 255, 255, 0.03); /* Cristal ultra transparente */
+            --borde-cristal: rgba(255, 255, 255, 0.08);
+            --azul-electrico: #1e6fff;   /* Azul moderno vibrante */
+            --naranja-neon: #ff6a00;     /* El naranja de la marca */
+            --texto-blanco: #ffffff;
+            --texto-mutado: #94a3b8;     /* Gris elegante */
+            --gradiente-premium: linear-gradient(135deg, #ff6a00, #ff9e00);
         }
 
-        /* Estilos Globales */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--gris-fondo);
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--bg-principal);
+            color: var(--texto-blanco);
+            overflow-x: hidden;
         }
 
-        /* Barra de Navegación */
+        /* Navbar Minimalista flotante */
         header {
-            background-color: var(--azul-principal);
-            color: var(--blanco);
-            padding: 1rem 2rem;
+            background: rgba(4, 13, 26, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--borde-cristal);
+            padding: 1.2rem 2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         header .logo-container {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, var(--texto-mutado));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
-            font-size: 1.4rem;
-            font-weight: bold;
-            letter-spacing: 0.5px;
+            gap: 8px;
         }
 
-        header .logo-icon {
-            background-color: var(--naranja-acento);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 50%;
-            margin-right: 10px;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        header .logo-container span {
+            color: var(--naranja-neon);
+            -webkit-text-fill-color: initial;
         }
 
         nav a {
-            color: var(--blanco);
+            color: var(--texto-mutado);
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            margin-left: 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--naranja-acento);
+            color: var(--texto-blanco);
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
-        /* Sección Hero con colores vibrantes */
+        /* Banner de Descuento Interactivo */
+        .promo-tag {
+            background: var(--gradiente-premium);
+            color: var(--bg-principal);
+            font-weight: 800;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(255, 106, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Sección de Impacto (Hero) */
         .hero {
-            background: linear-gradient(135deg, rgba(11, 76, 163, 0.95), rgba(255, 106, 0, 0.85));
-            color: var(--blanco);
-            min-height: 50vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1.5rem;
+            position: relative;
+        }
+
+        /* Decoración de luces de fondo (Glow) */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 106, 0, 0.15);
+            filter: blur(120px);
+            top: 20%;
+            left: 20%;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(30, 111, 255, 0.15);
+            filter: blur(150px);
+            bottom: 10%;
+            right: 15%;
+            border-radius: 50%;
+            z-index: -1;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+            background: linear-gradient(to bottom, #ffffff 40%, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            max-width: 700px;
-            font-weight: 300;
-        }
-
-        /* Cintillo de Promoción Especial */
-        .promo-banner {
-            background-color: var(--naranja-acento);
-            color: white;
-            text-align: center;
-            padding: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 1.3rem;
+            color: var(--texto-mutated);
+            max-width: 650px;
+            color: var(--texto-mutado);
+            font-weight: 400;
+            margin-bottom: 3rem;
         }
 
         /* Contenedores */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 3.5rem 1rem;
+            padding: 6rem 1.5rem;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 2.5rem;
-            color: var(--azul-principal);
-            font-size: 2.2rem;
-            position: relative;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 4rem;
+            background: linear-gradient(to right, #fff, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--naranja-acento);
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Cuadrícula de Servicios */
-        .services-grid {
+        /* Tarjetas de Cristal Asimétricas */
+        .grid-moderno {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--blanco);
-            padding: 2.5rem 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid var(--azul-principal);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .card.special {
-            border-top: 5px solid var(--naranja-acento);
-        }
-
-        .card h3 {
-            margin-bottom: 1rem;
-            color: var(--azul-oscuro);
-            font-size: 1.4rem;
-        }
-
-        /* Distribución de Información de Contacto */
-        .info-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
         }
 
-        .info-box {
-            background: var(--blanco);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        .tarjeta-cristal {
+            background: var(--bg-tarjeta);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--borde-cristal);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .info-box h3 {
-            color: var(--azul-principal);
-            margin-bottom: 1.2rem;
+        .tarjeta-cristal:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Detalle brillante al pasar el cursor sobre la tarjeta destacada */
+        .tarjeta-cristal.destacada::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gradiente-premium);
+        }
+
+        .tarjeta-cristal h3 {
             font-size: 1.5rem;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
         }
 
-        .info-box ul {
-            list-style: none;
+        .tarjeta-cristal p {
+            color: var(--texto-mutado);
+            font-size: 1.05rem;
         }
 
-        .info-box ul li {
-            margin-bottom: 0.8rem;
+        /* Sección de Información de Dos Columnas */
+        .bento-box {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .bento-item {
+            background: var(--bg-tarjeta);
+            border: 1px solid var(--borde-cristal);
+            padding: 3.5rem;
+            border-radius: 28px;
+        }
+
+        .bento-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .info-line {
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: var(--texto-mutado);
         }
 
-        .info-box p {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+        .info-line strong {
+            color: #fff;
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+            color: var(--naranja-neon);
         }
 
-        /* Botones de Acción */
-        .btn-container {
-            margin-top: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .btn {
+        /* Botones Estilo Next-Gen */
+        .btn-glow {
+            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            padding: 1.1rem 2.2rem;
+            border-radius: 16px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
             text-align: center;
+            margin-top: 1rem;
         }
 
-        .btn:active {
-            transform: scale(0.98);
+        .btn-neon-orange {
+            background: var(--gradiente-premium);
+            color: var(--bg-principal);
+            font-weight: 700;
+            box-shadow: 0 15px 30px rgba(255, 106, 0, 0.25);
         }
 
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
+        .btn-neon-orange:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 106, 0, 0.4);
         }
 
-        .btn-whatsapp:hover {
-            background-color: #128C7E;
+        .btn-outline {
+            border: 1px solid var(--borde-cristal);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .btn-facebook {
-            background-color: #1877F2;
-            color: white;
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255,255,255,0.3);
         }
 
-        .btn-facebook:hover {
-            background-color: #0d65d9;
+        /* Footer Limpio */
+        footer {
+            border-top: 1px solid var(--borde-cristal);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--texto-mutado);
+            font-size: 0.95rem;
         }
 
-        /* Adaptabilidad Móvil */
-        @media (max-width: 768px) {
-            .info-layout {
+        /* Responsive */
+        @media (max-width: 968px) {
+            .bento-box {
                 grid-template-columns: 1fr;
             }
             .hero h1 {
-                font-size: 2.2rem;
-            }
-            header {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            nav a {
-                margin: 0 0.75rem;
+                font-size: 3rem;
+                letter-spacing: -1px;
             }
         }
 
-        /* Pie de página */
-        footer {
-            background-color: var(--azul-oscuro);
-            color: var(--blanco);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            font-size: 1rem;
+        @media (max-width: 640px) {
+            header {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            nav a {
+                margin: 0 0.8rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .bento-item {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navegación -->
     <header>
         <div class="logo-container">
-            <span class="logo-icon">♥</span> Farmacia El Botiquín
+            <span>✦</span> Farmacia El Botiquín
         </div>
         <nav>
             <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#valores">Pilares</a>
+            <a href="#contacto">Ubicación</a>
         </nav>
     </header>
 
-    <div class="promo-banner">
-        🎉 ¡Aprovechá hasta un 20% de descuento en productos naturales todos los MARTES y MIÉRCOLES! 🎉
-    </div>
-
+    <!-- Héroe Principal -->
     <section id="inicio" class="hero">
-        <h1>Farmacia El Botiquín</h1>
-        <p>Nos enfocamos en proporcionar un servicio de calidad para lograr obtener el bienestar de todos nuestros clientes. ¡Unite a la Familia Botiquín y empezá a ganar!</p>
+        <div class="promo-tag">
+            🔥 Especial: 20% OFF Martes y Miércoles en Productos Naturales
+        </div>
+        <h1>El bienestar de tu familia en un solo lugar.</h1>
+        <p>
+            Nos enfocamos en proporcionar un servicio de máxima calidad para garantizar la salud de nuestra comunidad en Pavas. ¡Unite a nuestra familia y descubrí una mejor atención!
+        </p>
+        <a href="#contacto" class="btn-glow btn-neon-orange" style="max-width: 280px;">Escríbenos Ahora</a>
     </section>
 
-    <section id="servicios" class="container">
-        <h2 class="section-title">Nuestros Pilares</h2>
-        <div class="services-grid">
-            <div class="card">
+    <!-- Pilares de Marca -->
+    <section id="valores" class="container">
+        <h2 class="section-title">Redefiniendo tu atención</h2>
+        <div class="grid-moderno">
+            <div class="tarjeta-cristal">
                 <h3>Calidad Garantizada</h3>
-                <p>Ofrecemos medicamentos y productos de cuidado personal respaldados por los mejores laboratorios.</p>
+                <p>Medicamentos de confianza y productos certificados que cuidan tu salud de manera real.</p>
             </div>
-            <div class="card special">
+            <div class="tarjeta-cristal destacada">
                 <h3>Precios Bajos</h3>
-                <p>Cuidamos tu bolsillo con ofertas constantes y excelentes precios en todo nuestro catálogo.</p>
+                <p>Creemos que la salud debe ser accesible. Diseñamos ofertas constantes pensando en tu economía.</p>
             </div>
-            <div class="card">
+            <div class="tarjeta-cristal">
                 <h3>Excelente Servicio</h3>
-                <p>Atención personalizada por profesionales dispuestos a asesorarte y cuidar de tu salud.</p>
+                <p>Atención ágil, profesional y con la calidez humana que te mereces en cada consulta.</p>
             </div>
         </div>
     </section>
 
-    <section id="contacto" style="background-color: #eef3f8;">
-        <div class="container info-layout">
-            <div class="info-box">
-                <h3>Horario de Atención</h3>
-                <ul>
-                    <li><strong>Lunes a Sábado:</strong> Abierto hasta las 8:00 p. m.</li>
-                    <li><strong>Domingos:</strong> Cerrado</li>
-                </ul>
-                <br>
-                <h3>Información de Contacto</h3>
-                <p>📞 <strong>Teléfono:</strong> 2213 5670</p>
-                <p>✉️ <strong>Correo:</strong> info@farmaciaelbotiquin.com</p>
-            </div>
+    <!-- Información de Contacto / Estilo Bento Grid -->
+    <section id="contacto" class="container">
+        <div class="bento-box">
             
-            <div class="info-box">
-                <h3>Ubicación</h3>
-                <p>📍 San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero. Costa Rica.</p>
-                <p style="color: #666; font-size: 0.95rem; margin-top: 5px;">🚌 Referencia: Parada El Higuerón, Pueblo Nuevo.</p>
-                
-                <div class="btn-container">
-                    <a href="https://wa.me/50622135670?text=Hola,%20vengo%20de%20la%20página%20web.%20Quisiera%20consultar%20por%20un%20medicamento." class="btn btn-whatsapp" target="_blank">
-                        💬 Cotizar por WhatsApp
+            <div class="bento-item">
+                <h3>Horarios y Canales</h3>
+                <div class="info-line">
+                    <strong>Horario Especial</strong>
+                    Lunes a Sábado — Abierto hasta las 8:00 p. m.<br>Domingos — Cerrado
+                </div>
+                <div class="info-line">
+                    <strong>Línea Telefónica</strong>
+                    2213 5670
+                </div>
+                <div class="info-line">
+                    <strong>Soporte Digital</strong>
+                    info@farmaciaelbotiquin.com
+                </div>
+            </div>
+
+            <div class="bento-item" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3>Vení a Conocernos</h3>
+                    <div class="info-line">
+                        <strong>Dirección Exacta</strong>
+                        San José, Pavas, Lomas del Río, costado noroeste del Colegio de Rincón Grande, local esquinero.
+                    </div>
+                    <div class="info-line" style="font-size: 0.95rem; opacity: 0.8;">
+                        📍 Ref: Parada El Higuerón, Pueblo Nuevo.
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <a href="https://wa.me/50622135670?text=Hola,%20vi%20su%20nueva%20página%20web.%20Quisiera%20consultar%20por%20un%20medicamento." class="btn-glow btn-neon-orange" target="_blank">
+                        Conectar por WhatsApp
                     </a>
-                    
-                    <a href="https://www.facebook.com/profile.php?id=100063717587126" class="btn btn-facebook" target="_blank">
-                        👍 Visitar nuestro Facebook
+                    <a href="https://www.facebook.com/profile.php?id=100063717587126" class="btn-glow btn-outline" target="_blank">
+                        Seguinos en Facebook
                     </a>
                 </div>
             </div>
+
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Farmacia El Botiquín. #Calidad #Servicio #PreciosBajos. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Farmacia El Botiquín. Todos los derechos reservados. <br><span style="font-size: 0.8rem; color: #475569; margin-top: 5px; display:inline-block;">Salud • Calidad • Precios Bajos</span></p>
     </footer>
 
 </body>
